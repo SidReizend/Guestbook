@@ -13,7 +13,7 @@ spec:
   source:
     path: .
     repoURL: https://github.com/SidReizend/Guestbook.git
-    targetRevision: main
+    targetRevision: {{ .Values.spec.source.targetRevision }}
 
   syncPolicy:
     automated:
