@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: helm-guestbook
+  namespace: argocd
+  finalizers:
+  - resources-finalizer.argocd.argoproj.io
+spec:
+  destination:
+    namespace: argocd
+    server: {{ .Values.spec.destination.server }}
+  project: default
+  source:
+    path: .
+    repoURL: https://github.com/SidReizend/Guestbook.git
+    targetRevision: main
+
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
