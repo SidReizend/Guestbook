@@ -1,3 +1,5 @@
+metadata:
+  name: helm-guestbook 
 spec:
   destination:
     namespace: argocd

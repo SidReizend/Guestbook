@@ -1,3 +1,5 @@
+metadata:
+  name: helm-guestbookd
 spec:
   destination:
     namespace: default
