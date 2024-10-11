@@ -1,0 +1,21 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: parent-app
+  namespace: argocd  # Namespace where Argo CD is installed
+spec:
+  project: default
+  source:
+    repoURL: 'https://github.com/SidReizend/Guestbook.git'  # Replace with the repo URL
+    path: ./argo-apps  # Path to the Helm chart directory (where child application is defined)
+    targetRevision: main  # Branch or tag in your repo
+    helm:
+      valueFiles:
+        - values-gba.yaml  # Use the values.yaml that contains the destination variable
+  destination:
+    server: 'https://kubernetes.default.svc'  # Kubernetes cluster URL
+    namespace: argocd  # Namespace where you want the parent app deployed
+  syncPolicy:
+    automated:
+      selfHeal: true
+      prune: true
