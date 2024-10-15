@@ -5,9 +5,9 @@ metadata:
   namespace: argocd
   annotations:
     # Image Updater configuration
-    # argocd-image-updater.argoproj.io/image-list: <private-registry-url>/<project>/httpbin
-    # argocd-image-updater.argoproj.io/write-back-method: git  # Update Git with the new image tag
-    # argocd-image-updater.argoproj.io/image-update-strategy: latest  # Always track the latest tag
+    argocd-image-updater.argoproj.io/image-list: <private-registry-url>/<project>/httpbin
+    argocd-image-updater.argoproj.io/write-back-method: git  # Update Git with the new image tag
+    argocd-image-updater.argoproj.io/image-update-strategy: latest  # Always track the latest tag
 spec:
   project: default
   source:
@@ -16,7 +16,7 @@ spec:
     targetRevision: main
     helm:
       valueFiles:
-        - values-gba.yaml  # Use the values.yaml that contains the destination variable
+        - values-gbd.yaml  # Use the values.yaml that contains the destination variable
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
