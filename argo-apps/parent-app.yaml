@@ -16,7 +16,7 @@ spec:
     targetRevision: main
     helm:
       valueFiles:
-        - values-gbd.yaml  # Use the values.yaml that contains the destination variable
+        - values-gba.yaml  # Use the values.yaml that contains the destination variable
   destination:
     server: 'https://kubernetes.default.svc'
     namespace: argocd
