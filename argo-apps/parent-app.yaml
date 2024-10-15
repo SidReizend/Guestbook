@@ -2,19 +2,24 @@ apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
   name: parent-app
-  namespace: argocd  # Namespace where Argo CD is installed
+  namespace: argocd
+  annotations:
+    # Image Updater configuration
+    argocd-image-updater.argoproj.io/image-list: <private-registry-url>/<project>/httpbin
+    argocd-image-updater.argoproj.io/write-back-method: git  # Update Git with the new image tag
+    argocd-image-updater.argoproj.io/image-update-strategy: latest  # Always track the latest tag
 spec:
   project: default
   source:
-    repoURL: 'https://github.com/SidReizend/Guestbook.git'  # Replace with the repo URL
-    path: ./argo-apps  # Path to the Helm chart directory (where child application is defined)
-    targetRevision: main  # Branch or tag in your repo
+    repoURL: 'https://github.com/SidReizend/Guestbook.git'
+    path: ./argo-apps
+    targetRevision: main
     helm:
       valueFiles:
         - values-gba.yaml  # Use the values.yaml that contains the destination variable
   destination:
-    server: 'https://kubernetes.default.svc'  # Kubernetes cluster URL
-    namespace: argocd  # Namespace where you want the parent app deployed
+    server: 'https://kubernetes.default.svc'
+    namespace: argocd
   syncPolicy:
     automated:
       selfHeal: true

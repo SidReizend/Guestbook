@@ -1,9 +1,10 @@
-metadata:
-  name: helm-guestbook 
-spec:
-  destination:
-    namespace: argocd
-    server: https://kubernetes.default.svc
-  source:
-    targetRevision: main
-  
+hgb-app:
+  metadata:
+    name: helm-guestbook
+  spec:
+    destination:
+      namespace: argocd
+      server: https://kubernetes.default.svc
+    source:
+      targetRevision: main
+
