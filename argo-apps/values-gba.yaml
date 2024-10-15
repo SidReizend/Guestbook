@@ -5,4 +5,4 @@ spec:
     namespace: default
     server: https://kubernetes.default.svc
   source:  
-    targetRevision: stage
+    targetRevision: main
