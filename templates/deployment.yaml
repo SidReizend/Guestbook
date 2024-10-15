@@ -23,6 +23,8 @@ spec:
         app: {{ template "helm-guestbook.name" . }}
         release: {{ .Release.Name }}
     spec:
+      imagePullSecrets:
+        - name: gcr-json-key2   # Update to use the new secret here
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
@@ -41,8 +43,6 @@ spec:
               port: http
           resources:
 {{ toYaml .Values.resources | indent 12 }}
-      imagePullSecrets:
-        - name: gcr-json-key2   # Update to use the new secret here
     {{- with .Values.nodeSelector }}
       nodeSelector:
 {{ toYaml . | indent 8 }}
