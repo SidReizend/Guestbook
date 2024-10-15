@@ -1,19 +1,20 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: hgb-{{ .Values.hgb-app.metadata.name }} #helm-guestbook
+
+  name: hgb-{{ .Values.metadata.name }} #helm-guestbook
   namespace: argocd
   finalizers:
   - resources-finalizer.argocd.argoproj.io
 spec:
   destination:
-    namespace: {{ .Values.hgb-app.spec.destination.namespace }}
-    server: {{ .Values.hgb-app.spec.destination.server }}
+    namespace: {{ .Values.spec.destination.namespace }}
+    server: {{ .Values.spec.destination.server }}
   project: default
   source:
     path: .
     repoURL: https://github.com/SidReizend/Guestbook.git
-    targetRevision: {{ .Values.hgb-app.spec.source.targetRevision }}
+    targetRevision: {{ .Values.spec.source.targetRevision }}
 
   syncPolicy:
     automated:
