@@ -5,9 +5,9 @@ metadata:
   namespace: argocd
   annotations:
     # Image Updater configuration
-    argocd-image-updater.argoproj.io/image-list: <private-registry-url>/<project>/httpbin
-    argocd-image-updater.argoproj.io/write-back-method: git  # Update Git with the new image tag
-    argocd-image-updater.argoproj.io/image-update-strategy: latest  # Always track the latest tag
+    # argocd-image-updater.argoproj.io/image-list: <private-registry-url>/<project>/httpbin
+    # argocd-image-updater.argoproj.io/write-back-method: git  # Update Git with the new image tag
+    # argocd-image-updater.argoproj.io/image-update-strategy: latest  # Always track the latest tag
 spec:
   project: default
   source:
