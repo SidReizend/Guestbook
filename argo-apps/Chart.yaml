@@ -1,4 +1,4 @@
-apiVersion: v2
+cdapiVersion: v2
 name: applications
 description: Applications
 

@@ -1,6 +1,9 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
+  annotations:
+    argocd-image-updater.argoproj.io/image-list: my-app=gcr.io/k3s-argo/ks-guestbook-demo
+    argocd-image-updater.argoproj.io/my-app.update-strategy: latest
   name: {{ template "helm-guestbook.fullname" . }}
   labels:
     app: {{ template "helm-guestbook.name" . }}
@@ -20,6 +23,8 @@ spec:
         app: {{ template "helm-guestbook.name" . }}
         release: {{ .Release.Name }}
     spec:
+      imagePullSecrets:
+        - name: gcr-json-key2   # Update to use the new secret here
       containers:
         - name: {{ .Chart.Name }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
