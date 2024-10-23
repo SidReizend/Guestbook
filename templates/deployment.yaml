@@ -40,18 +40,18 @@ spec:
               path: /
               port: http
           resources:
-            {{ toYaml .Values.resources | indent 12 }}
+{{ toYaml .Values.resources | indent 12 }}
       imagePullSecrets:
-        - name: gcr-json-key
-{{- with .Values.nodeSelector }}
+        - name: gcr-json-key2   # Update to use the new secret here
+    {{- with .Values.nodeSelector }}
       nodeSelector:
-        {{ toYaml . | indent 8 }}
-{{- end }}
-{{- with .Values.affinity }}
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.affinity }}
       affinity:
-        {{ toYaml . | indent 8 }}
-{{- end }}
-{{- with .Values.tolerations }}
+{{ toYaml . | indent 8 }}
+    {{- end }}
+    {{- with .Values.tolerations }}
       tolerations:
-        {{ toYaml . | indent 8 }}
-{{- end }}
+{{ toYaml . | indent 8 }}
+    {{- end }}
