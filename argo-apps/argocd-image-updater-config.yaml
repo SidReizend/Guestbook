@@ -1,0 +1,29 @@
+apiVersion: v1
+data:
+  registries.conf: |
+    registries:
+      - name: gcr
+        api_url: https://gcr.io
+        prefix: gcr.io
+        credentials:
+          type: secret
+          secret_name: gcr-secret
+          namespace: argocd
+  repositories: |
+    - url: git@github.com:SidReizend/Guestbook.git
+      sshPrivateKeySecret:
+        name: git-creds
+        key: sshPrivateKey
+kind: ConfigMap
+metadata:
+  annotations:
+    kubectl.kubernetes.io/last-applied-configuration: |
+      {"apiVersion":"v1","data":{"registries.conf":"registries:\n  - name: gcr\n    api_url: https://gcr.io\n    prefix: gcr.io\n    credentials: gcr-secret\n","repositories":"- url: git@github.com:SidReizend/Guestbook.git\n  sshPrivateKeySecret:\n    name: git-creds\n    key: sshPrivateKey\n"},"kind":"ConfigMap","metadata":{"annotations":{},"creationTimestamp":"2024-10-14T13:44:17Z","labels":{"app.kubernetes.io/name":"argocd-image-updater-config","app.kubernetes.io/part-of":"argocd-image-updater"},"name":"argocd-image-updater-config","namespace":"argocd","resourceVersion":"386023","uid":"4b68538f-08e6-4fb5-b08b-83bd373151ad"}}
+  creationTimestamp: "2024-10-14T13:44:17Z"
+  labels:
+    app.kubernetes.io/name: argocd-image-updater-config
+    app.kubernetes.io/part-of: argocd-image-updater
+  name: argocd-image-updater-config
+  namespace: argocd
+  resourceVersion: "589819"
+  uid: 4b68538f-08e6-4fb5-b08b-83bd373151ad
